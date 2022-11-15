@@ -1,7 +1,6 @@
-
-import React from 'react';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
+import DividerDark from './DividerDark';
 
 const CardComponent = () => {
 
@@ -16,6 +15,8 @@ const CardComponent = () => {
     );
 
     return (
+        <>
+        <h1 className='text-center text-green-700 border-bottom-2 w-2 flex justify-content-center mx-auto'>Card Component</h1>
         <div className='grid m-2'>
             <div className="col-12 md:col-4">
                 <Card title="Simple Card">
@@ -33,6 +34,8 @@ const CardComponent = () => {
                 </Card>
             </div>
         </div>
+        <DividerDark/>
+        </>
     )
 }
 
