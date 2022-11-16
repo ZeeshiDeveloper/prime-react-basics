@@ -3,6 +3,7 @@ import ButtonComp from './components/ButtonComp'
 import CardComponent from './components/CardComponent'
 import CarouselComp from './components/CarouselComp'
 import FormComp from './components/FormComp'
+import MenuBarComp from './components/MenuBarComp'
 
 function App() {  
   return (
@@ -12,6 +13,7 @@ function App() {
       <ButtonComp/>
       <CarouselComp/>
       <FormComp/>
+      <MenuBarComp/>
     </div>
   )
 }
