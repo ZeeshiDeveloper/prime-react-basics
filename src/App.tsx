@@ -2,6 +2,7 @@ import './App.css'
 import ButtonComp from './components/ButtonComp'
 import CardComponent from './components/CardComponent'
 import CarouselComp from './components/CarouselComp'
+import FormComp from './components/FormComp'
 
 function App() {  
   return (
@@ -10,6 +11,7 @@ function App() {
       <CardComponent/>
       <ButtonComp/>
       <CarouselComp/>
+      <FormComp/>
     </div>
   )
 }
