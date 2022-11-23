@@ -1,8 +1,10 @@
 import './App.css'
+import BasicDataTable from './components/BasicDataTable'
 import ButtonComp from './components/ButtonComp'
 import CardComponent from './components/CardComponent'
 import CarouselComp from './components/CarouselComp'
 import FormComp from './components/FormComp'
+import FrozenColumnDataTable from './components/FrozenColumnDataTable'
 import MenuBarComp from './components/MenuBarComp'
 
 function App() {  
@@ -14,6 +16,8 @@ function App() {
       <CarouselComp/>
       <FormComp/>
       <MenuBarComp/>
+      <BasicDataTable/>
+      <FrozenColumnDataTable/>
     </div>
   )
 }
