@@ -5,8 +5,8 @@ import CardComponent from './components/CardComponent'
 import CarouselComp from './components/CarouselComp'
 import FormComp from './components/FormComp'
 import FrozenColumnDataTable from './components/FrozenColumnDataTable'
+import FrozenRows from './components/FrozenRows'
 import MenuBarComp from './components/MenuBarComp'
-
 function App() {  
   return (
     <div>
@@ -18,6 +18,8 @@ function App() {
       <MenuBarComp/>
       <BasicDataTable/>
       <FrozenColumnDataTable/>
+      <FrozenRows/>
+      
     </div>
   )
 }
