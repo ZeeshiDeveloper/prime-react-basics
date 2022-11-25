@@ -7,6 +7,7 @@ import FormComp from './components/FormComp'
 import FrozenColumnDataTable from './components/FrozenColumnDataTable'
 import FrozenRows from './components/FrozenRows'
 import MenuBarComp from './components/MenuBarComp'
+import SimpleTableTask from './components/SimpleTableTask'
 import SubheaderGrouping from './components/SubheaderGrouping'
 function App() {  
   return (
@@ -21,6 +22,7 @@ function App() {
       <FrozenColumnDataTable/>
       <FrozenRows/>
       <SubheaderGrouping/>
+      <SimpleTableTask/>
       
     </div>
   )
