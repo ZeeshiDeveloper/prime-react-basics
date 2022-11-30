@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import { Toast } from 'primereact/toast';
 
 const SimpleTableTask = () => {
     const [selectedItems, setSelectedItems] = useState(null);
@@ -269,13 +270,25 @@ const tableData =  {
     const delEdit = () => {
         return(
             <div className='flex'>
-                <Button icon="pi pi-user-edit" className="p-button-rounded p-button-text w-2rem h-2rem"/>
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-text w-2rem h-2rem ml-2"/>
+                <Button icon="pi pi-user-edit" onClick={showEdit} className="p-button-rounded p-button-text w-2rem h-2rem"/>
+                <Button icon="pi pi-trash" onClick={showDelete} className="p-button-rounded p-button-text w-2rem h-2rem ml-2"/>
             </div>
         )
     }
-    
+    // Toast msg for Edit Button
+    const toast:any = useRef(null);
+    const showEdit = () => {
+        toast.current.show({severity:'success', summary: 'Success Message', detail:'Edit Button Clicked', life: 8000});
+    }
+    // Toast msg for Delete Button
+    const toastDel:any = useRef(null);
+    const showDelete = () => {
+        toastDel.current.show({severity:'error', summary: 'Delete Message', detail:'Delete Button Clicked', life: 8000});
+    }
   return (
+    <>
+    <Toast ref={toast} />
+    <Toast ref={toastDel} />
     <div className='mx-6 mb-8'>
         <h1 className='text-center text-green-700 border-bottom-2 w-3 mb-8 flex justify-content-center mx-auto'>TASK : Basic Data Table</h1>
         <div className='p-3 bg-gray-100'>
@@ -309,6 +322,7 @@ const tableData =  {
             </DataTable>
         </div>
     </div>
+    </>
   )
 }
 
