@@ -269,12 +269,12 @@ const tableData =  {
     const delEdit = () => {
         return(
             <div className='flex'>
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-text w-2rem h-2rem"/>
+                <Button icon="pi pi-user-edit" className="p-button-rounded p-button-text w-2rem h-2rem"/>
                 <Button icon="pi pi-trash" className="p-button-rounded p-button-text w-2rem h-2rem ml-2"/>
             </div>
         )
     }
-
+    
   return (
     <div className='mx-6 mb-8'>
         <h1 className='text-center text-green-700 border-bottom-2 w-3 mb-8 flex justify-content-center mx-auto'>TASK : Basic Data Table</h1>
@@ -292,7 +292,7 @@ const tableData =  {
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
             selection={selectedItems} onSelectionChange={(e) => setSelectedItems(e.value)}
-            editMode="row">
+            editMode="row" showGridlines>
                 <Column selectionMode="multiple"></Column>
                 <Column field="id" header="No." headerStyle={{fontWeight:"bold"}} style={{minWidth:"50px"}}></Column>
                 <Column field="profileLabel" header="Profile Label" style={{minWidth:"150px"}}></Column>
@@ -305,8 +305,7 @@ const tableData =  {
                 <Column field="rl1SummaryCharges" header="RL-1 Summary Charges" style={{minWidth:"220px"}}></Column>
                 <Column field="discountPercentage" header="Discount %" style={{minWidth:"150px"}}></Column>
                 <Column field="discountAmount" header="Discount $" style={{minWidth:"120px"}}></Column>
-                {/* <Column body={delEdit} header={setting} style={{minWidth:"80px"}}></Column> */}
-                <Column rowEditor headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
+                <Column body={delEdit} header={setting} style={{minWidth:"80px"}}></Column>
             </DataTable>
         </div>
     </div>
