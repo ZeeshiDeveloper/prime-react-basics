@@ -42,8 +42,9 @@ const DataTableForTask = (props: { data: any[] | undefined; }) => {
             selection={selectedItems} onSelectionChange={(e) => setSelectedItems(e.value)}
             editMode="row" showGridlines>
                 <Column selectionMode="multiple"></Column>
+                {/* Loop we just need one column and map all properties according to data. */}
                 <Column field="id" header="No." headerStyle={{fontWeight:"bold"}} style={{minWidth:"50px"}}></Column>
-                <Column field="profileLabel" header="Profile Label" style={{minWidth:"150px"}}></Column>
+                {/* <Column field="profileLabel" header="Profile Label" style={{minWidth:"150px"}}></Column>
                 <Column field="isGlobal" header="Global" style={{minWidth:"150px"}}></Column>
                 <Column field="effectiveStartDate" header="Effective Date" style={{minWidth:"150px"}}></Column>
                 <Column field="effectiveEndDate" header="End Date" style={{minWidth:"150px"}}></Column>
@@ -52,7 +53,7 @@ const DataTableForTask = (props: { data: any[] | undefined; }) => {
                 <Column field="t4aSummaryCharges" header="T4 Summary Charges" style={{minWidth:"200px"}}></Column>
                 <Column field="rl1SummaryCharges" header="RL-1 Summary Charges" style={{minWidth:"220px"}}></Column>
                 <Column field="discountPercentage" header="Discount %" style={{minWidth:"150px"}}></Column>
-                <Column field="discountAmount" header="Discount $" style={{minWidth:"120px"}}></Column>
+                <Column field="discountAmount" header="Discount $" style={{minWidth:"120px"}}></Column> */}
                 <Column body={delEdit} header={setting} style={{minWidth:"80px"}}></Column>
             </DataTable>
     </div>
