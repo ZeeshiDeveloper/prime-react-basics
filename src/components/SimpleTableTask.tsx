@@ -266,7 +266,7 @@ const SimpleTableTask = () => {
                 </span>
                 <Button label='Add Billing Profile' className='p-button-success uppercase'/>
             </div>
-          <DataTableForTask  data={tableData.items} />
+          <DataTableForTask {...tableData} showChecboxColumn={true}/>
         </div>
     </div>
     </>
