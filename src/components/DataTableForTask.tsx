@@ -6,6 +6,7 @@ import { Toast } from 'primereact/toast';
 
 export interface IDataTable {
     showChecboxColumn: boolean,
+    showSettingColumn: boolean,
         page:number;
         size:number;
         total:number;
@@ -53,9 +54,7 @@ const DataTableForTask = (props:IDataTable) => {
 
     const {field, headerName} = col1
     console.log(headerName)
-     
-
-
+   
 
   return (
     <div>
@@ -66,21 +65,27 @@ const DataTableForTask = (props:IDataTable) => {
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
             selection={selectedItems} onSelectionChange={(e) => setSelectedItems(e.value)}
-            editMode="row" showGridlines>
+            editMode="row" showGridlines
+            resizableColumns columnResizeMode="expand">
                 <Column selectionMode="multiple" hidden={props.showChecboxColumn} ></Column>
                 <Column field="id" header="No." headerStyle={{fontWeight:"bold"}} style={{minWidth:"50px"}}></Column>
                 
                 {props.headerColumns.map((x:any) => (
                     <Column field={x.field} header={x.headerName} sortable={x.sortable} align={x.align}
-                    alignHeader={x.headerAlign} 
-                    
+                    alignHeader={x.headerAlign} hidden={x.hide} 
+                    headerTooltip={x.description}
+                    resizeable={x.resizable}
+                    sortableDisabled={x.hideSortIcons}
                     style={{minWidth:"200px"}}/>
                 ))}
                     
-                <Column body={delEdit} header={setting} style={{minWidth:"80px"}}></Column>
+                <Column body={delEdit} header={setting} style={{minWidth:"80px"}} hidden={props.showChecboxColumn}></Column>
             </DataTable>
+       
     </div>
   )
 }
 
 export default DataTableForTask
+
+// resizableColumns={props.headerColumns.resizable} columnResizeMode="expand"

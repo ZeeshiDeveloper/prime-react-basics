@@ -51,11 +51,11 @@ const SimpleTableTask = () => {
           hideable: false,
           sortable: true,
           // "sortingOrder": "asc",
-          resizable: false,
+          resizable: true,
           type: "string",
           align: "left",
           headerAlign: "left",
-          hideSortIcons: false,
+          hideSortIcons: true,
           disableColumnMenu: true,
           disableReorder: true,
           disableExport: true,
@@ -266,7 +266,7 @@ const SimpleTableTask = () => {
                 </span>
                 <Button label='Add Billing Profile' className='p-button-success uppercase'/>
             </div>
-          <DataTableForTask {...tableData} showChecboxColumn={true}/>
+          <DataTableForTask {...tableData} showChecboxColumn={true} showSettingColumn={true}/>
         </div>
     </div>
     </>
