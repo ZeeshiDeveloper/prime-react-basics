@@ -83,6 +83,7 @@ const DataTableForTask = (props:IDataTable) => {
                         frozen={x.frozenColumn}
                         reorderable={x.disableReorder}
                         columnKey={x.field}
+                        dataType={x.type}
                         style={{minWidth:"230px"}}/>
                 ))}
                     
@@ -95,3 +96,5 @@ const DataTableForTask = (props:IDataTable) => {
 }
 
 export default DataTableForTask
+
+//resizeablbe must be false if frozen is true and viseversa
