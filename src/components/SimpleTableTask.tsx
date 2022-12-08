@@ -51,7 +51,7 @@ const SimpleTableTask = () => {
           hideable: false,
           sortable: true,
           // "sortingOrder": "asc",
-          resizable: true,
+          resizable: false,
           type: "string",
           align: "left",
           headerAlign: "left",
@@ -61,7 +61,9 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 0
+          sequence: 0,
+
+          frozenColumn:true,
         },
         {
           field: "isGlobal",
@@ -82,7 +84,8 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 1
+          sequence: 1,
+          frozenColumn:false,
         },
         {
           field: "effectiveStartDate",
@@ -103,7 +106,8 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 2
+          sequence: 2,
+          frozenColumn:true,
         },
         {
           field: "effectiveEndDate",
@@ -114,17 +118,18 @@ const SimpleTableTask = () => {
           hideable: false,
           sortable: true,
           // "sortingOrder": "asc",
-          resizable: false,
+          resizable: true,
           type: "string",
           align: "left",
           headerAlign: "left",
           hideSortIcons: false,
           disableColumnMenu: true,
-          disableReorder: true,
+          disableReorder: false,
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 3
+          sequence: 3,
+          frozenColumn:false,
         },
         {
           field: "chargesType",
@@ -145,7 +150,8 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 4
+          sequence: 4,
+          frozenColumn:false,
         },
         {
           field: "t4SummaryCharges",
@@ -166,7 +172,8 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 5
+          sequence: 5,
+          frozenColumn:false,
         },
         {
           field: "t4aSummaryCharges",
@@ -187,7 +194,8 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 6
+          sequence: 6,
+          frozenColumn:false,
         },
         {
           field: "rl1SummaryCharges",
@@ -208,7 +216,8 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 7
+          sequence: 7,
+          frozenColumn:false,
         },
         {
           field: "discountPercentage",
@@ -229,7 +238,8 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 8
+          sequence: 8,
+          frozenColumn:false,
         },
         {
           field: "discountAmount",
@@ -250,7 +260,8 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 8
+          sequence: 8,
+          frozenColumn:false,
         }
       ]
     }
@@ -266,7 +277,7 @@ const SimpleTableTask = () => {
                 </span>
                 <Button label='Add Billing Profile' className='p-button-success uppercase'/>
             </div>
-          <DataTableForTask {...tableData} showChecboxColumn={true} showSettingColumn={true}/>
+          <DataTableForTask {...tableData} showChecboxColumn={false} showSettingColumn={false}/>
         </div>
     </div>
     </>
