@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { DataTable } from 'primereact/datatable';
-import { Column, ColumnHeaderOptions } from 'primereact/column';
+import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 
@@ -56,18 +56,18 @@ const DataTableForTask = (props:IDataTable) => {
     // console.log(headerName)
    
      const maskingCol = (val:any,hName:any) => {
-        console.log("value inside masking func :",val)
         if(val == true){
             return "*****"
         }else{
             return hName
         }
      }
+
+    //  console.log(props.headerColumns.id)
   return (
     <div>
     <Toast ref={toast} />
     <Toast ref={toastDel} />
-        {/* {this.maskingCol(true)} */}
        <DataTable value={props.items} responsiveLayout="scroll" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
@@ -83,7 +83,7 @@ const DataTableForTask = (props:IDataTable) => {
                 resizeable={false} reorderable={false} columnKey='id'></Column>
                 
                 {props.headerColumns.map((x:any) => (
-                    <Column field={x.field} header={maskingCol(x.maskable,x.headerName)} sortable={x.sortable} align={x.align}
+                    <Column field={x.field} header={x.headerName && maskingCol(x.maskable,x.headerName)} sortable={x.sortable} align={x.align}
                         alignHeader={x.headerAlign} hidden={x.hide} 
                         headerTooltip={x.description}
                         resizeable={x.resizable}
@@ -91,6 +91,7 @@ const DataTableForTask = (props:IDataTable) => {
                         reorderable={x.disableReorder}
                         columnKey={x.field}
                         dataType={x.type}
+                        exportable={x.disableExport}
                         style={{minWidth:"230px"}}/>
                 ))}
                     
