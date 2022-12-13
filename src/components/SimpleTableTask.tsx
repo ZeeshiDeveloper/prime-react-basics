@@ -126,7 +126,7 @@ const SimpleTableTask = () => {
           disableColumnMenu: true,
           disableReorder: false,
           disableExport: true,
-          maskable: false,
+          maskable: true,
           // "isFixed": true,
           sequence: 3,
           frozenColumn:false,
