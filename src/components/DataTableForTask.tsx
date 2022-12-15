@@ -82,6 +82,8 @@ const DataTableForTask = (props:IDataTable) => {
         return props.items.filter((rows:any)=> columns.some((columns:any)=> rows[columns]?.toString().toLowerCase().indexOf(itemSearsch.toLowerCase())>-1))  
     }
 
+// Sequence of header Columns
+    props.headerColumns.sort((a,b) => (a.sequence > b.sequence) ? 1 : ((b.sequence > a.sequence) ? -1 : 0))
 
   return (
     <div>
