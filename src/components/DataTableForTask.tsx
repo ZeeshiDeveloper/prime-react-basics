@@ -3,6 +3,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
+import { InputText } from 'primereact/inputtext';
 
 export interface IDataTable {
     showChecboxColumn: boolean,
@@ -18,6 +19,10 @@ export interface IDataTable {
 
 const DataTableForTask = (props:IDataTable) => {
     const [selectedItems, setSelectedItems] = useState(null);
+
+    // this states used in the process of filteration of dataTable
+    const [loading, setLoading] = useState(false);
+    const [itemSearsch, setItemSearsch] = useState('');
    
     const setting = () => {
         return(
@@ -46,14 +51,6 @@ const DataTableForTask = (props:IDataTable) => {
      }
    
     console.log(props.headerColumns)
-
-      
-    // object || Array destructuring
-    // const [col0, col1, col2, col3, col4, col5, col6, col7, col8, col9] = props.headerColumns
-    // console.log(col1)
-
-    // const {field, headerName} = col1
-    // console.log(headerName)
    
      const maskingCol = (val:any,hName:any) => {
         if(val == true){
@@ -63,12 +60,34 @@ const DataTableForTask = (props:IDataTable) => {
         }
      }
 
-    //  console.log(props.headerColumns.id)
+// Search type and billing profile Button
+    const renderHeader = () => {
+        return (
+             <div className='flex justify-content-between mb-3'>
+                <span className="p-input-icon-left w-5">
+                    <i className="pi pi-search" />
+                    <InputText value={itemSearsch} onChange={(e) => setItemSearsch(e.target.value)} placeholder="Keyword Search" className='w-full bg-transparent'/>
+                </span>
+                <Button label='Add Billing Profile' className='p-button-success uppercase'/>
+            </div>
+        )
+    }
+    const headerSearch = renderHeader();
+    function search(_row:any){
+        // return props.items.filter((rows)=> rows.profileLabel.toLowerCase().indexOf(globalFilterValue1)>-1 || 
+        // rows.effectiveStartDate.toLowerCase().indexOf(globalFilterValue1)>-1)
+
+        // another way where we dont need to write all properties which you want to search (we can search with all props) 
+        const columns = _row[0] && Object.keys(_row[0])
+        return props.items.filter((rows:any)=> columns.some((columns:any)=> rows[columns]?.toString().toLowerCase().indexOf(itemSearsch.toLowerCase())>-1))  
+    }
+
+
   return (
     <div>
     <Toast ref={toast} />
     <Toast ref={toastDel} />
-       <DataTable value={props.items} responsiveLayout="scroll" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
+       <DataTable value={search(props.items)} responsiveLayout="scroll" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
             selection={selectedItems} onSelectionChange={(e) => setSelectedItems(e.value)}
@@ -76,14 +95,19 @@ const DataTableForTask = (props:IDataTable) => {
             resizableColumns columnResizeMode="expand"
             scrollable
             reorderableColumns
+            filterDisplay="menu"
+            loading={loading}
+            globalFilterFields={['headerName']}
+            header={headerSearch}
+            emptyMessage="No Record found."
             >
                 <Column selectionMode="multiple" hidden={props.showChecboxColumn} frozen resizeable={false}
                 style={{maxWidth:"65px"}} field="selection" columnKey='selection'></Column>
                 <Column field="id" header="No." headerStyle={{fontWeight:"bold"}} style={{maxWidth:"60px"}}
                 resizeable={false} reorderable={false} columnKey='id'></Column>
                 
-                {props.headerColumns.map((x:any) => (
-                    <Column field={x.field} header={x.headerName && maskingCol(x.maskable,x.headerName)} sortable={x.sortable} align={x.align}
+                {props.headerColumns && props.headerColumns.map((x:any,index:any) => (
+                    <Column key={index} field={x.field} header={x.headerName && maskingCol(x.maskable,x.headerName)} sortable={x.sortable} align={x.align}
                         alignHeader={x.headerAlign} hidden={x.hide} 
                         headerTooltip={x.description}
                         resizeable={x.resizable}
@@ -92,11 +116,20 @@ const DataTableForTask = (props:IDataTable) => {
                         columnKey={x.field}
                         dataType={x.type}
                         exportable={x.disableExport}
+                        // filter
+                        // filterApply
+                        // filterElement
+                        // showFilterMenu
+                        // showFilterOperator
+                        // filterHeader
+                        // filterMenuStyle={x.disableColumnMenu}
+                        filterPlaceholder='Search' 
+                        filterField={x.headerName}
                         style={{minWidth:"230px"}}/>
                 ))}
                     
                 <Column body={delEdit} header={setting} style={{width:"110px",maxWidth:"110px"}} hidden={props.showSettingColumn}
-                resizeable={false} reorderable={false} frozen alignFrozen='right'></Column>
+                resizeable={false} reorderable={false} frozen alignFrozen='right' filter></Column>
             </DataTable>
          
     </div>

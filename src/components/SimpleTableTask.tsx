@@ -79,7 +79,7 @@ const SimpleTableTask = () => {
           align: "left",
           headerAlign: "left",
           hideSortIcons: false,
-          disableColumnMenu: true,
+          disableColumnMenu: false,
           disableReorder: true,
           disableExport: true,
           maskable: false,
@@ -260,7 +260,7 @@ const SimpleTableTask = () => {
           disableExport: true,
           maskable: false,
           // "isFixed": true,
-          sequence: 8,
+          sequence: 9,
           frozenColumn:false,
         }
       ]
@@ -270,13 +270,6 @@ const SimpleTableTask = () => {
     <div className='mx-6 mb-8'>
         <h1 className='text-center text-green-700 border-bottom-2 w-3 mb-8 flex justify-content-center mx-auto'>TASK : Basic Data Table</h1>
         <div className='p-3 bg-gray-100'>
-            <div className='flex justify-content-between mb-3'>
-                <span className="p-input-icon-left w-5">
-                    <i className="pi pi-search" />
-                    <InputText value={value} onChange={(e) => setValue(e.target.value)} placeholder="Search" className='w-full bg-transparent'/>
-                </span>
-                <Button label='Add Billing Profile' className='p-button-success uppercase'/>
-            </div>
           <DataTableForTask {...tableData} showChecboxColumn={false} showSettingColumn={false}/>
         </div>
     </div>
