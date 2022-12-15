@@ -19,7 +19,7 @@ export interface IDataTable {
 
 const DataTableForTask = (props:IDataTable) => {
     const [selectedItems, setSelectedItems] = useState(null);
-
+    const [filterVal, setFilter] = useState(true);
     // this states used in the process of filteration of dataTable
     const [loading, setLoading] = useState(false);
     const [itemSearsch, setItemSearsch] = useState('');
@@ -84,7 +84,7 @@ const DataTableForTask = (props:IDataTable) => {
 
 // Sequence of header Columns
     props.headerColumns.sort((a,b) => (a.sequence > b.sequence) ? 1 : ((b.sequence > a.sequence) ? -1 : 0))
-
+    console.log("props.headerColumns", typeof(props.headerColumns))
   return (
     <div>
     <Toast ref={toast} />
@@ -108,9 +108,10 @@ const DataTableForTask = (props:IDataTable) => {
                 <Column field="id" header="No." headerStyle={{fontWeight:"bold"}} style={{maxWidth:"60px"}}
                 resizeable={false} reorderable={false} columnKey='id'></Column>
                 
-                {props.headerColumns && props.headerColumns.map((x:any,index:any) => (
+                {typeof(props.headerColumns) === 'object' ? props.headerColumns.map((x:any,index:any) => (
                     <Column key={index} field={x.field} header={x.headerName && maskingCol(x.maskable,x.headerName)} sortable={x.sortable} align={x.align}
-                        alignHeader={x.headerAlign} hidden={x.hide} 
+                        alignHeader={x.headerAlign} 
+                        hidden={x.hide} 
                         headerTooltip={x.description}
                         resizeable={x.resizable}
                         frozen={x.frozenColumn}
@@ -118,17 +119,19 @@ const DataTableForTask = (props:IDataTable) => {
                         columnKey={x.field}
                         dataType={x.type}
                         exportable={x.disableExport}
-                        // filter
-                        // filterApply
-                        // filterElement
-                        // showFilterMenu
-                        // showFilterOperator
-                        // filterHeader
-                        // filterMenuStyle={x.disableColumnMenu}
+                        
+                        filterApply
+                        filterElement
+                        showFilterMenu
+                        showFilterOperator
+                        filterHeader
+                        filterMenuStyle={x.disableColumnMenu}
                         filterPlaceholder='Search' 
                         filterField={x.headerName}
-                        style={{minWidth:"230px"}}/>
-                ))}
+                        style={{minWidth:"230px"}}
+                        filter
+                        />
+                )): ''}
                     
                 <Column body={delEdit} header={setting} style={{width:"110px",maxWidth:"110px"}} hidden={props.showSettingColumn}
                 resizeable={false} reorderable={false} frozen alignFrozen='right' filter></Column>
