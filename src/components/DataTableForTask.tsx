@@ -4,6 +4,7 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
+import './dataTableTask.css'
 
 export interface IDataTable {
     showChecboxColumn: boolean,
@@ -19,7 +20,7 @@ export interface IDataTable {
 
 const DataTableForTask = (props:IDataTable) => {
     const [selectedItems, setSelectedItems] = useState(null);
-    const [filterVal, setFilter] = useState(true);
+    // const [filterVal, setFilter] = useState(true);
     // this states used in the process of filteration of dataTable
     const [loading, setLoading] = useState(false);
     const [itemSearsch, setItemSearsch] = useState('');
@@ -109,32 +110,32 @@ const DataTableForTask = (props:IDataTable) => {
                 resizeable={false} reorderable={false} columnKey='id'></Column>
                 
                 {typeof(props.headerColumns) === 'object' ? props.headerColumns.map((x:any,index:any) => (
-                    <Column key={index} field={x.field} header={x.headerName && maskingCol(x.maskable,x.headerName)} sortable={x.sortable} align={x.align}
-                        alignHeader={x.headerAlign} 
-                        hidden={x.hide} 
+                    <Column key={index} field={x.field} header={x.headerName && maskingCol(x.maskable,x.headerName)} 
                         headerTooltip={x.description}
+                        // flex
+                        hidden={x.hide} 
+                        // hideable
+                        sortable={x.sortable} 
                         resizeable={x.resizable}
-                        frozen={x.frozenColumn}
-                        reorderable={x.disableReorder}
-                        columnKey={x.field}
                         dataType={x.type}
-                        exportable={x.disableExport}
+                        align={x.align}
+                        alignHeader={x.headerAlign}
+                        // hideSortIcons
+                        // sortableDisabled={x.hideSortIcons}
                         
-                        filterApply
-                        filterElement
-                        showFilterMenu
-                        showFilterOperator
-                        filterHeader
-                        filterMenuStyle={x.disableColumnMenu}
-                        filterPlaceholder='Search' 
-                        filterField={x.headerName}
-                        style={{minWidth:"230px"}}
                         filter
+                        showFilterMenu={x.disableColumnMenu}
+                        reorderable={x.disableReorder}
+                        exportable={x.disableExport}
+                        frozen={x.frozenColumn}
+                        columnKey={x.field}
+                        style={{minWidth:"250px"}}
+                        className="p-column-header-content"
                         />
                 )): ''}
                     
                 <Column body={delEdit} header={setting} style={{width:"110px",maxWidth:"110px"}} hidden={props.showSettingColumn}
-                resizeable={false} reorderable={false} frozen alignFrozen='right' filter></Column>
+                resizeable={false} reorderable={false} frozen alignFrozen='right'></Column>
             </DataTable>
          
     </div>

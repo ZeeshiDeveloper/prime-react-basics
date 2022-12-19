@@ -254,7 +254,7 @@ const SimpleTableTask = () => {
           type: 'text',
           align: "left",
           headerAlign: "left",
-          hideSortIcons: false,
+          hideSortIcons: true,
           disableColumnMenu: true,
           disableReorder: true,
           disableExport: true,
