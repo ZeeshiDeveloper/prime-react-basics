@@ -247,7 +247,7 @@ const SimpleTableTask = () => {
           description: "Discount $",
           flex: 0,
           hide: false,
-          hideable: false,
+          hideable: true,
           sortable: true,
           // "sortingOrder": "asc",
           resizable: false,

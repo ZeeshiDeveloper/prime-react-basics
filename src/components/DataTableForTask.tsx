@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
 import './dataTableTask.css'
+import { Checkbox } from 'primereact/checkbox';
 
 export interface IDataTable {
     showChecboxColumn: boolean,
@@ -24,6 +25,9 @@ const DataTableForTask = (props:IDataTable) => {
     // this states used in the process of filteration of dataTable
     const [loading, setLoading] = useState(false);
     const [itemSearsch, setItemSearsch] = useState('');
+    const [isHide, setIsHide] = useState<boolean>(false);
+
+    const [checkedHide, setCheckedHide] = useState<boolean>(false);
    
     const setting = () => {
         return(
@@ -86,6 +90,30 @@ const DataTableForTask = (props:IDataTable) => {
 // Sequence of header Columns
     props.headerColumns.sort((a,b) => (a.sequence > b.sequence) ? 1 : ((b.sequence > a.sequence) ? -1 : 0))
     console.log("props.headerColumns", typeof(props.headerColumns))
+
+    const HideButton = (option: boolean | null) => {
+        if(option == true){
+                return(
+                <span className='field-checkbox mt-3 mb-0'>
+                    <Button label='Hide Column'  className='p-button-secondary uppercase' onClick={(e)=>clickHideBtn(e)}/>
+                </span>
+                )       
+        }else{
+            return option = null
+        }
+    }
+    const clickHideBtn = (value: any) => {
+        if(value == true){
+            console.log("CLicked")
+            value = true
+            // value = isHide
+        }       
+        // setIsHide(value)
+        console.log("value : ",value)
+        return value
+
+    }
+    
   return (
     <div>
     <Toast ref={toast} />
@@ -113,7 +141,7 @@ const DataTableForTask = (props:IDataTable) => {
                     <Column key={index} field={x.field} header={x.headerName && maskingCol(x.maskable,x.headerName)} 
                         headerTooltip={x.description}
                         // flex
-                        hidden={x.hide} 
+                        hidden={clickHideBtn(x.hide)} 
                         // hideable
                         sortable={x.sortable} 
                         resizeable={x.resizable}
@@ -122,9 +150,12 @@ const DataTableForTask = (props:IDataTable) => {
                         alignHeader={x.headerAlign}
                         // hideSortIcons
                         // sortableDisabled={x.hideSortIcons}
-                        
+
+                        filterElement={HideButton(x.hideable)}
+                        showFilterMenuOptions
                         filter
                         showFilterMenu={x.disableColumnMenu}
+                        filterPlaceholder="Search by name"
                         reorderable={x.disableReorder}
                         exportable={x.disableExport}
                         frozen={x.frozenColumn}
