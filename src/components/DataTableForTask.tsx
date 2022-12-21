@@ -28,7 +28,8 @@ const DataTableForTask = (props:IDataTable) => {
     const [isHide, setIsHide] = useState<boolean>(false);
 
     const [checkedHide, setCheckedHide] = useState<boolean>(false);
-   
+    const [val, setValue] = useState(false)
+    const [field, setField] = useState("")
     const setting = () => {
         return(
             <div className='ml-4 pl-1'>
@@ -87,31 +88,71 @@ const DataTableForTask = (props:IDataTable) => {
         return props.items.filter((rows:any)=> columns.some((columns:any)=> rows[columns]?.toString().toLowerCase().indexOf(itemSearsch.toLowerCase())>-1))  
     }
 
+    
+
 // Sequence of header Columns
     props.headerColumns.sort((a,b) => (a.sequence > b.sequence) ? 1 : ((b.sequence > a.sequence) ? -1 : 0))
     console.log("props.headerColumns", typeof(props.headerColumns))
 
-    const HideButton = (option: boolean | null) => {
+    const HideButton = (option: any, value: any , field: any) => {
         if(option == true){
                 return(
                 <span className='field-checkbox mt-3 mb-0'>
-                    <Button label='Hide Column'  className='p-button-secondary uppercase' onClick={(e)=>clickHideBtn(e)}/>
+                    <Button label='Hide Column'  className='p-button-secondary uppercase' onClick={()=>clickHideBtn(value, field, true)}/>
                 </span>
                 )       
         }else{
             return option = null
         }
     }
-    const clickHideBtn = (value: any) => {
-        if(value == true){
-            console.log("CLicked")
-            value = true
-            // value = isHide
-        }       
-        // setIsHide(value)
-        console.log("value : ",value)
-        return value
 
+    const clickHideBtn = (value: any, field: any, is_load: any) => {
+        // setIsHide(true)
+        console.log("xyz", value.field);
+        console.log("is_load", is_load);
+        console.log("x", value);
+        console.log("value.field === field", value.field === field);
+        
+        if(is_load){
+            if(value.field === field){
+                setValue(true)
+                setField(field)
+                return true
+            } else {
+                setValue(false)
+                setField("")
+            }
+        } else {
+            return false
+        }
+        
+        console.log("value==============================", value);
+        
+
+        // if(field === "discountAmount"){
+        //     value = true
+        // }
+        // if(value == true){
+        //     console.log("CLicked")
+        //     // value = true
+        //     value = value
+        // }       
+        // // setIsHide(value)
+        // console.log("value : ",value)
+        
+        // return value
+
+    }
+   
+    const xyz = () => {
+        console.log("hi");
+        
+        return true
+    }
+    const filterFunc = () => {
+        console.log("hi");
+        
+        return true
     }
     
   return (
@@ -137,23 +178,28 @@ const DataTableForTask = (props:IDataTable) => {
                 <Column field="id" header="No." headerStyle={{fontWeight:"bold"}} style={{maxWidth:"60px"}}
                 resizeable={false} reorderable={false} columnKey='id'></Column>
                 
-                {typeof(props.headerColumns) === 'object' ? props.headerColumns.map((x:any,index:any) => (
+                {typeof(props.headerColumns) === 'object' ? props.headerColumns.map((x:any,index:any) => {
+                    console.log("clickHideBtn(x, x.field, false) inhhhher", clickHideBtn(x, x.field, false));
+                    
+                    return (
                     <Column key={index} field={x.field} header={x.headerName && maskingCol(x.maskable,x.headerName)} 
                         headerTooltip={x.description}
                         // flex
-                        hidden={clickHideBtn(x.hide)} 
+                        // hidden={clickHideBtn(x.hide)} 
+                        hidden={val === x.hide ? clickHideBtn(x, x.field, false) : x.field === field ? val: x.hide } 
                         // hideable
                         sortable={x.sortable} 
                         resizeable={x.resizable}
                         dataType={x.type}
                         align={x.align}
                         alignHeader={x.headerAlign}
+                        
                         // hideSortIcons
                         // sortableDisabled={x.hideSortIcons}
 
-                        filterElement={HideButton(x.hideable)}
+                        filterElement={HideButton(x.hideable, x, x.field)}
                         showFilterMenuOptions
-                        filter
+                        filter={filterFunc()}
                         showFilterMenu={x.disableColumnMenu}
                         filterPlaceholder="Search by name"
                         reorderable={x.disableReorder}
@@ -163,7 +209,7 @@ const DataTableForTask = (props:IDataTable) => {
                         style={{minWidth:"250px"}}
                         className="p-column-header-content"
                         />
-                )): ''}
+                )}): ''}
                     
                 <Column body={delEdit} header={setting} style={{width:"110px",maxWidth:"110px"}} hidden={props.showSettingColumn}
                 resizeable={false} reorderable={false} frozen alignFrozen='right'></Column>
