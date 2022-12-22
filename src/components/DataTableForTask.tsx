@@ -5,7 +5,6 @@ import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
 import './dataTableTask.css'
-import { Checkbox } from 'primereact/checkbox';
 
 export interface IDataTable {
     showChecboxColumn: boolean,
@@ -21,13 +20,10 @@ export interface IDataTable {
 
 const DataTableForTask = (props:IDataTable) => {
     const [selectedItems, setSelectedItems] = useState(null);
-    // const [filterVal, setFilter] = useState(true);
     // this states used in the process of filteration of dataTable
     const [loading, setLoading] = useState(false);
     const [itemSearsch, setItemSearsch] = useState('');
-    const [isHide, setIsHide] = useState<boolean>(false);
 
-    const [checkedHide, setCheckedHide] = useState<boolean>(false);
     const [val, setValue] = useState(false)
     const [field, setField] = useState("")
     const setting = () => {
@@ -88,8 +84,6 @@ const DataTableForTask = (props:IDataTable) => {
         return props.items.filter((rows:any)=> columns.some((columns:any)=> rows[columns]?.toString().toLowerCase().indexOf(itemSearsch.toLowerCase())>-1))  
     }
 
-    
-
 // Sequence of header Columns
     props.headerColumns.sort((a,b) => (a.sequence > b.sequence) ? 1 : ((b.sequence > a.sequence) ? -1 : 0))
     console.log("props.headerColumns", typeof(props.headerColumns))
@@ -107,53 +101,26 @@ const DataTableForTask = (props:IDataTable) => {
     }
 
     const clickHideBtn = (value: any, field: any, is_load: any) => {
-        // setIsHide(true)
-        console.log("xyz", value.field);
-        console.log("is_load", is_load);
-        console.log("x", value);
-        console.log("value.field === field", value.field === field);
+        // console.log("xyz", value.field);
+        // console.log("is_load", is_load);
+        // console.log("x", value);
+        // console.log("value.field === field", value.field === field);
         
         if(is_load){
             if(value.field === field){
-                setValue(true)
+                setValue(value)
                 setField(field)
-                return true
-            } else {
-                setValue(false)
-                setField("")
+                // return true
             }
+            //  else {
+            //     setValue(value)
+            //     setField("")
+            // }
         } else {
             return false
         }
-        
-        console.log("value==============================", value);
-        
-
-        // if(field === "discountAmount"){
-        //     value = true
-        // }
-        // if(value == true){
-        //     console.log("CLicked")
-        //     // value = true
-        //     value = value
-        // }       
-        // // setIsHide(value)
-        // console.log("value : ",value)
-        
-        // return value
-
     }
-   
-    const xyz = () => {
-        console.log("hi");
-        
-        return true
-    }
-    const filterFunc = () => {
-        console.log("hi");
-        
-        return true
-    }
+  
     
   return (
     <div>
@@ -184,22 +151,17 @@ const DataTableForTask = (props:IDataTable) => {
                     return (
                     <Column key={index} field={x.field} header={x.headerName && maskingCol(x.maskable,x.headerName)} 
                         headerTooltip={x.description}
-                        // flex
-                        // hidden={clickHideBtn(x.hide)} 
+                        // flex (This property is not use Yet)
                         hidden={val === x.hide ? clickHideBtn(x, x.field, false) : x.field === field ? val: x.hide } 
-                        // hideable
                         sortable={x.sortable} 
                         resizeable={x.resizable}
                         dataType={x.type}
                         align={x.align}
                         alignHeader={x.headerAlign}
-                        
-                        // hideSortIcons
-                        // sortableDisabled={x.hideSortIcons}
-
+                        // hideSortIcons (This property is not use Yet)
                         filterElement={HideButton(x.hideable, x, x.field)}
                         showFilterMenuOptions
-                        filter={filterFunc()}
+                        filter
                         showFilterMenu={x.disableColumnMenu}
                         filterPlaceholder="Search by name"
                         reorderable={x.disableReorder}
