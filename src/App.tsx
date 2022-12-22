@@ -6,6 +6,7 @@ import CarouselComp from './components/CarouselComp'
 import FormComp from './components/FormComp'
 import FrozenColumnDataTable from './components/FrozenColumnDataTable'
 import FrozenRows from './components/FrozenRows'
+import LoginForm from './components/LoginForm'
 import MenuBarComp from './components/MenuBarComp'
 import SimpleTableTask from './components/SimpleTableTask'
 import SubheaderGrouping from './components/SubheaderGrouping'
@@ -23,6 +24,7 @@ function App() {
       <FrozenRows/>
       <SubheaderGrouping/>
       <SimpleTableTask/>
+      <LoginForm/>  
       
     </div>
   )
