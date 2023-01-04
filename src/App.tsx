@@ -1,4 +1,7 @@
 import './App.css'
+// Routing
+import { Route,Routes } from 'react-router-dom';
+
 import BasicDataTable from './components/BasicDataTable'
 import ButtonComp from './components/ButtonComp'
 import CardComponent from './components/CardComponent'
@@ -10,21 +13,27 @@ import LoginForm from './components/LoginForm'
 import MenuBarComp from './components/MenuBarComp'
 import SimpleTableTask from './components/SimpleTableTask'
 import SubheaderGrouping from './components/SubheaderGrouping'
+import SignUpPage from './components/SignUpPage'
+import Layout from './components/layouts/Layout'
 function App() {  
   return (
     <div>
-      <h2 className='bg-blue-400 text-white p-2 m-0 py-3'>Prime React Basics</h2>
-      <CardComponent/>
-      <ButtonComp/>
-      <CarouselComp/>
-      <FormComp/>
-      <MenuBarComp/>
-      <BasicDataTable/>
-      <FrozenColumnDataTable/>
-      <FrozenRows/>
-      <SubheaderGrouping/>
-      <SimpleTableTask/>
-      <LoginForm/>  
+        <Layout>
+          <Routes>
+            <Route path='/login' element={<LoginForm /> } />
+            <Route path='/sign-up' element={<SignUpPage />} />
+            <Route path='/simple-card' element={<CardComponent /> } />
+            <Route path='/button' element={<ButtonComp /> } />
+            <Route path='/carousel' element={<CarouselComp /> } />
+            <Route path='/simple-form' element={<FormComp /> } />
+            <Route path='/menu-bar' element={<MenuBarComp /> } />
+            <Route path='/data-table' element={<BasicDataTable /> } />
+            <Route path='/frozen-column' element={<FrozenColumnDataTable /> } />
+            <Route path='/frozen-row' element={<FrozenRows /> } />
+            <Route path='/sub-header' element={<SubheaderGrouping /> } />
+            <Route path='/table-task' element={<SimpleTableTask /> } />
+          </Routes>
+        </Layout>
       
     </div>
   )

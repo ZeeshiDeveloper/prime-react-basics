@@ -1,0 +1,48 @@
+/* This Component MainNavigation have its Own style File so thats why its file extension
+would not be just .css it would be .module.css */
+
+.header{
+    display: flex;
+    height: 5rem;
+    width: 100%;
+    justify-content: space-between;
+    background-color : #20232a;
+    height: 4rem;
+}
+.logo{
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-left:1rem;
+    display:flex;
+    align-items: center;
+}
+
+.header ul{
+    list-style: none;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding:0 1rem 0 0;
+    margin: 0;
+}
+.header li{
+    margin: 1.5rem 0.8rem;
+}
+.header a{
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.header a:hover{
+    color: #61dafb;
+}
+
+
+.badge {
+    background-color: #cc2062;
+    color: white;
+    border-radius: 12px;
+    padding: 0 1rem;
+    margin-left: 0.5rem;
+  }
