@@ -9,7 +9,7 @@ const MainNavigation = () => {
             <div className={classes.logo}>React Basics</div>
             <nav>
                 <ul>
-                    <li><Link to='/login'>Login</Link></li>
+                    <li><Link to='/'>Login</Link></li>
                     <li><Link to='/simple-card'>Card</Link></li>
                     <li><Link to='/button'>Button</Link></li>
                     <li><Link to='/carousel'>Carousel</Link></li>

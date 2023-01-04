@@ -15,13 +15,15 @@ import SimpleTableTask from './components/SimpleTableTask'
 import SubheaderGrouping from './components/SubheaderGrouping'
 import SignUpPage from './components/SignUpPage'
 import Layout from './components/layouts/Layout'
+import ResetPassword from './components/ResetPassword';
 function App() {  
   return (
     <div>
         <Layout>
           <Routes>
-            <Route path='/login' element={<LoginForm /> } />
+            <Route path='/' element={<LoginForm /> } />
             <Route path='/sign-up' element={<SignUpPage />} />
+            <Route path='/forget-password' element={<ResetPassword />} />
             <Route path='/simple-card' element={<CardComponent /> } />
             <Route path='/button' element={<ButtonComp /> } />
             <Route path='/carousel' element={<CarouselComp /> } />
