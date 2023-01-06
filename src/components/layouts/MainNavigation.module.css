@@ -8,6 +8,7 @@ would not be just .css it would be .module.css */
     justify-content: space-between;
     background-color : #20232a;
     height: 4rem;
+    align-items: center;
 }
 .logo{
     color: #fff;
@@ -18,7 +19,7 @@ would not be just .css it would be .module.css */
     align-items: center;
 }
 
-.header ul{
+.menuLink{
     list-style: none;
     height: 4rem;
     display: flex;
@@ -26,6 +27,7 @@ would not be just .css it would be .module.css */
     padding:0 1rem 0 0;
     margin: 0;
 }
+
 .header li{
     margin: 1.5rem 0.8rem;
 }
@@ -38,11 +40,77 @@ would not be just .css it would be .module.css */
     color: #61dafb;
 }
 
+.header i{
+    display: none;
+}
 
-.badge {
-    background-color: #cc2062;
-    color: white;
-    border-radius: 12px;
-    padding: 0 1rem;
-    margin-left: 0.5rem;
-  }
+/* for responsiveness */
+@media (max-width:1440px) {
+    .header li {
+        margin: 1.5rem 0.6rem;
+    }
+    .header a{
+        font-size: 0.9rem;
+    }
+}
+@media(max-width:1250px){
+    .logo{
+        font-size: 1.2rem;
+    }
+    .header li{
+        margin: 1.5rem 0.6rem;
+
+    }
+    .header a{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width:1024px){
+    .logo{
+        font-size: 1rem;
+    }
+    .header a{
+        font-size: 0.8rem;
+    }
+    .header li{
+    margin: 1.5rem 0.4rem;
+    }
+}
+@media(max-width:950px){
+    .logo{
+        font-size: 0.9rem;
+    }
+    .header li{
+        margin:1.5rem 0.3rem;
+    }
+    .header a{
+        font-size: 0.7rem;
+    }
+}
+@media (max-width:850px){
+    .menuLink{
+        display: none;
+    }
+    .header li{
+        display: block;
+        margin: 1rem 0rem;
+    }
+    .mobileMenuLink{
+        position: absolute;
+        display: block;
+        list-style: none;
+        left: 0;
+        top: 5%;
+        transition: all 1s ease-in-out;
+        width: 100%;
+        background-color: #20232a;
+        z-index: 2;
+    }
+    .header a{
+        color: #fff;
+        font-size: 0.8rem;
+    }
+    .header i{
+        display: block;
+    }
+}

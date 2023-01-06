@@ -28,8 +28,9 @@ const LoginForm = () => {
 	return (
 		<div className='surface-900 pt-8 h-screen'>
 			<div className="grid m-0">
-				<div className='col-12 md:col-7 lg:col-6 xl:col-6 p-0'>
-					<Image src={login} alt="Login Image Preview" width="100%" className="border-round"/>
+				<div className='col-12 md:col-7 lg:col-6 xl:col-6 p-0 surface-900 '>
+					{/* <Image src={login} alt="Login Image Preview" width="100%" className="border-round"/> */}
+					<img src={login} alt="Login Image Preview" width="100%" className="border-round-3xl border-noround-left"/>
 				</div>
 				<div className='col-12 md:col-5 lg:col-6 xl:col-6 flex p-0 surface-900'>
 					<Card className="mx-auto w-25rem flex flex-column shadow-none surface-900">
